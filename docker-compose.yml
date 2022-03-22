@@ -1,0 +1,18 @@
+version: "3.1"
+
+services:
+  w3schools-db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_USER: feusi
+      MYSQL_PASSWORD: feusi
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: w3schools
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+      - ./init-mysql:/docker-entrypoint-initdb.d
+    ports:
+      # Use non standard port to avoid clashes
+      - 3309:3306

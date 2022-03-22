@@ -1,19 +1,27 @@
-# W3Schools Database
+# W3Schools Database in Docker
 
-I'm not associated with W3Schools but I have to give them a big shout-out. This is their website:
-https://www.w3schools.com
+Forked from https://github.com/AndrejPHP/w3schools-database for academic purposes.
 
-They provide excellent tutorials on the topic of web development. More than 15 years ago in the early 2000s when I was barely a teenager, I discovered their site and that's when I became interested in web development and started learning things little by little.
+This repository provides:
 
-Anyway this repository contains the database they use for their SQL tutorial here:
-https://www.w3schools.com/sql/default.asp
+- a docker compose which sets up the DB on port 3309 (non-default, no clashes)
+- initializes the database data from w3schools (provided by @AndrejPHP) 
+- Visual Studio Code config
 
-You can see the database tables and the data on the right hand side if you run this example:
-https://www.w3schools.com/sql/trysql.asp?filename=trysql_select_all
+## Setup 
 
-However, there is nowhere a link to download the database so I decided to create a SQL code for it which I hope you'll find useful because it is nice to have this database locally where you can perform all sorts of SQL queries, tests, for practicing and learning purposes etc. Enjoy!
+- Setup is as easy as:
 
-When the SQL file is executed it creates database named __w3schools__ with the following tables
+```bash
+docker compose up -d
+```
+
+-  Data is stored in the data directory
+
+
+## Tables
+
+When the docker container starts, it creates database named __w3schools__ with the following tables
 
     categories
     customers
@@ -26,7 +34,13 @@ When the SQL file is executed it creates database named __w3schools__ with the f
     
 and inserts the respective data. 
 
-You can change the database name if you want by modifying these 2 lines of code
+## How to reset?
 
-    CREATE DATABASE IF NOT EXISTS `w3schools`
-    USE `w3schools`;
+Execute:
+
+```bash
+docker compose down
+rm -rf data
+docker compose up -d
+```
+
