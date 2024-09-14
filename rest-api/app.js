@@ -71,7 +71,7 @@ for (let relation of relations) {
             res.json(rows);
         } catch (error) {
             console.error(error);
-            res.status(500).send('Internal Server Error:');
+            res.status(500).send(error);
         }
     })
 
@@ -89,7 +89,7 @@ for (let relation of relations) {
 
         } catch (error) {
             console.error(error);
-            res.status(500).send('Internal Server Error:');
+            res.status(500).send(error);
         }}
     )
 
@@ -108,7 +108,7 @@ for (let relation of relations) {
 
         } catch (error) {
             console.error(error);
-            res.status(500).send('Internal Server Error:');
+            res.status(500).send(error);
         }
     })
 
@@ -129,7 +129,7 @@ for (let relation of relations) {
 
         } catch (error) {
             console.error(error);
-            res.status(500).send('Internal Server Error:');
+            res.status(500).send(error);
         }
 
     })
@@ -147,7 +147,7 @@ for (let relation of relations) {
 
         } catch (error) {
             console.error(error);
-            res.status(500).send('Internal Server Error:');
+            res.status(500).send(error);
         }
     })
 }

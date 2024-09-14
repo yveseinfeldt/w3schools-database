@@ -2,6 +2,6 @@ POST http://localhost:3000/categories
 Content-Type: application/json
 
 {
-    "CategoryName": "asdf",
-    "Description": "asdf"
+    "CategoryName": "Feusi",
+    "Description": "test"
 }
