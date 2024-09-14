@@ -63,66 +63,82 @@ function CategoryList() {
   };
 
   return (
-    <div>
-      <h1>Categories</h1>
+    <div className="container mx-auto p-4">
+      <h1 className="text-2xl font-bold mb-4">Categories</h1>
       
-      <button onClick={() => setEditableCategoryId('new')}>Add New Category</button>
+      <button 
+        className="bg-blue-500 text-white px-4 py-2 rounded mb-4"
+        onClick={() => setEditableCategoryId('new')}
+      >
+        Add New Category
+      </button>
       {editableCategoryId === 'new' && (
-        <div>
+        <div className="mb-4 p-4 border rounded">
           <input
+            className="border p-2 mb-2 w-full"
             type="text"
             placeholder="Category Name"
             value={editedCategory['new']?.CategoryName || ''}
             onChange={(e) => handleInputChange('new', 'CategoryName', e.target.value)}
           />
           <input
+            className="border p-2 mb-2 w-full"
             type="text"
             placeholder="Description"
             value={editedCategory['new']?.Description || ''}
             onChange={(e) => handleInputChange('new', 'Description', e.target.value)}
           />
-          <button
-            onClick={() => {
-              const newCategory = editedCategory['new'];
-              fetch(`${api}/categories`, {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(newCategory),
-              })
-                .then(response => response.json())
-                .then(data => {
-                  setCategories([...categories, data]);
-                  setEditableCategoryId(null);
+          <div className="flex space-x-2">
+            <button
+              className="bg-green-500 text-white px-4 py-2 rounded"
+              onClick={() => {
+                const newCategory = editedCategory['new'];
+                fetch(`${api}/categories`, {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify(newCategory),
+                })
+                  .then(response => response.json())
+                  .then(data => {
+                    setCategories([...categories, data]);
+                    setEditableCategoryId(null);
                     setEditedCategory(prev => {
-                    const { new: _, ...rest } = prev;
-                    return rest;
+                      const { new: _, ...rest } = prev;
+                      return rest;
                     });
                     window.location.reload(); // Refresh the page
-                });
-            }}
-          >
-            Save
-          </button>
-          <button onClick={() => setEditableCategoryId(null)}>Cancel</button>
+                  });
+              }}
+            >
+              Save
+            </button>
+            <button 
+              className="bg-red-500 text-white px-4 py-2 rounded"
+              onClick={() => setEditableCategoryId(null)}
+            >
+              Cancel
+            </button>
+          </div>
         </div>
       )}
 
-      <table>
+      <table className="min-w-full bg-white border">
         <thead>
           <tr>
-            <th>Category Name</th>
-            <th>Description</th>
-            <th>Actions</th>
+            <th className="py-2 px-4 border-b">Category Name</th>
+            <th className="py-2 px-4 border-b">Description</th>
+            <th className="py-2 px-4 border-b">Actions</th>
           </tr>
         </thead>
         <tbody>
           {categories.map(category => (
-            <tr key={category.CategoryID}>
-              <td>
+            <tr key={category.CategoryID} className="hover:bg-gray-100">
+              <td className="py-2 px-4 border-b">
                 {editableCategoryId === category.CategoryID ? (
                   <input
+                    className="border p-2 w-full"
                     type="text"
                     value={editedCategory[category.CategoryID]?.CategoryName || category.CategoryName}
                     onChange={(e) =>
@@ -133,9 +149,10 @@ function CategoryList() {
                   category.CategoryName
                 )}
               </td>
-              <td>
+              <td className="py-2 px-4 border-b">
                 {editableCategoryId === category.CategoryID ? (
                   <input
+                    className="border p-2 w-full"
                     type="text"
                     value={editedCategory[category.CategoryID]?.Description || category.Description}
                     onChange={(e) =>
@@ -146,17 +163,37 @@ function CategoryList() {
                   category.Description
                 )}
               </td>
-              <td>
+              <td className="py-2 px-4 border-b">
                 {editableCategoryId === category.CategoryID ? (
-                  <>
-                    <button onClick={() => handleSave(category.CategoryID)}>Save</button>
-                    <button onClick={() => setEditableCategoryId(null)}>Cancel</button>
-                  </>
+                  <div className="flex space-x-2">
+                    <button 
+                      className="bg-green-500 text-white px-4 py-2 rounded"
+                      onClick={() => handleSave(category.CategoryID)}
+                    >
+                      Save
+                    </button>
+                    <button 
+                      className="bg-red-500 text-white px-4 py-2 rounded"
+                      onClick={() => setEditableCategoryId(null)}
+                    >
+                      Cancel
+                    </button>
+                  </div>
                 ) : (
-                  <>
-                    <button onClick={() => setEditableCategoryId(category.CategoryID)}>Edit</button>
-                    <button onClick={() => handleDelete(category.CategoryID)}>Delete</button>
-                  </>
+                  <div className="flex space-x-2">
+                    <button 
+                      className="bg-yellow-500 text-white px-4 py-2 rounded"
+                      onClick={() => setEditableCategoryId(category.CategoryID)}
+                    >
+                      Edit
+                    </button>
+                    <button 
+                      className="bg-red-500 text-white px-4 py-2 rounded"
+                      onClick={() => handleDelete(category.CategoryID)}
+                    >
+                      Delete
+                    </button>
+                  </div>
                 )}
               </td>
             </tr>
