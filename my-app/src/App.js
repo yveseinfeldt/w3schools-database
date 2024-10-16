@@ -127,7 +127,7 @@ function CategoryList() {
       <table className="min-w-full bg-white border">
         <thead>
           <tr>
-            <th className="py-2 px-4 border-b">Category Name</th>
+            <th className="py-2 px-4 border-b">Category</th>
             <th className="py-2 px-4 border-b">Description</th>
             <th className="py-2 px-4 border-b">Actions</th>
           </tr>
