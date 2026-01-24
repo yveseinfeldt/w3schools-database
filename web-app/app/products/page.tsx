@@ -1,17 +1,18 @@
 import { getProducts, getCategories } from '@/lib/api';
+import { Product, Category } from '@/lib/types';
 
 // Force this page to be rendered at runtime
 export const dynamic = 'force-dynamic';
 
 export default async function Page() {
-  let products = [] as { ProductID: number; ProductName: string; Price: number, CategoryID: number }[];
+  let products = [] as Product[];
   try {
     products = await getProducts();
   } catch (err) {
     console.error('Failed to fetch products:', err);
   }
 
-  let categories = [] as { CategoryID: number; CategoryName: string; }[];
+  let categories = [] as Category[];
   try {
     categories = await getCategories();
   }

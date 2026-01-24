@@ -1,10 +1,11 @@
 import { getCategories } from '@/lib/api';
+import { Category } from '@/lib/types';
 
 // Force this page to be rendered at runtime
 export const dynamic = 'force-dynamic';
 
 export default async function Page() {
-  let categories = [] as { CategoryID: number; CategoryName: string; Description: string }[];
+  let categories = [] as Category[];
   try {
     categories = await getCategories();
   } catch (err) {
