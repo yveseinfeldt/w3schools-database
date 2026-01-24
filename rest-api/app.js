@@ -14,11 +14,18 @@ const connection =  await mysql.createConnection({
     database: process.env.DB_NAME || 'w3schools',
 });
 
+const cors = require('cors');
+app.use(cors({
+  origin: 'http://localhost:3000', // or '*' for all origins (not recommended for production)
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type'],
+}));
+
+
 
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
 });
-
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {

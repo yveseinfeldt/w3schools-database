@@ -19,7 +19,6 @@ export default async function Page() {
     console.error('Failed to fetch categories:', err);
   }
 
-  //list products per category with category name as header
   return (
     <div>
       {categories.map((category) => (
