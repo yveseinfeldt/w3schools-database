@@ -14,6 +14,11 @@ export default async function Page() {
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      <div>
+        <a href='/categories/create' className="text-white bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded">
+          Create New Category
+        </a>
+      </div>
       {categories.map((category) => (
         <div key={category.CategoryID} className="border rounded-lg p-4 shadow-md">
           <h2 className="text-lg font-semibold">{category.CategoryName}</h2>
