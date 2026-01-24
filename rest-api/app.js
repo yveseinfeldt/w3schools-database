@@ -32,7 +32,7 @@ const relations = [
     },
     {
         name: 'customers',
-        id: 'customerID'
+        id: 'CustomerID'
     },
     {
         name: "employees",

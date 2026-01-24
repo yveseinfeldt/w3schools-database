@@ -18,6 +18,9 @@ export default async function Page() {
         <div key={category.CategoryID} className="border rounded-lg p-4 shadow-md">
           <h2 className="text-lg font-semibold">{category.CategoryName}</h2>
           <p className="text-gray-500">{category.Description}</p>
+          <a href={`/categories/${category.CategoryID}`} className="text-blue-500 hover:underline">
+            View Products
+          </a>
         </div>
       ))}
     </div>
