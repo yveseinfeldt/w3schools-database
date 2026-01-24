@@ -1,7 +1,14 @@
 // lib/api.ts
 export async function fetchFromApi<T>(endpoint: string): Promise<T> {
   const apiBase = process.env.API_URL || 'http://localhost:3000';
-  const res = await fetch(`${apiBase}${endpoint}`);
+  const res = await fetch(`${apiBase}${endpoint}`, 
+    {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+  );
   if (!res.ok) {
     throw new Error(`API error: ${res.status}`);
   }

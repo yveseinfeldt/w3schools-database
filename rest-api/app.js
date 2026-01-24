@@ -6,7 +6,7 @@ import bodyParser from 'body-parser';
 const app = express();
 const port = process.env.PORT || 3000;
 
-const connection =  await mysql.createConnection({
+const connection = await mysql.createConnection({
     host: process.env.DB_HOST || '127.0.0.1',
     port: process.env.DB_PORT || 3309,
     user: process.env.DB_USER || 'feusi',
@@ -14,22 +14,15 @@ const connection =  await mysql.createConnection({
     database: process.env.DB_NAME || 'w3schools',
 });
 
-const cors = require('cors');
-app.use(cors({
-  origin: 'http://localhost:3000', // or '*' for all origins (not recommended for production)
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type'],
-}));
-
-
 
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
 });
+
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
-    res.json({message: 'This is a simple REST API for the w3schools database'});
+    res.json({ message: 'This is a simple REST API for the w3schools database' });
 })
 
 const relations = [
@@ -71,7 +64,7 @@ for (let relation of relations) {
     app.get(`/${relation.name}`, async (req, res) => {
         // Get all rows of relation
         try {
-            const [rows] =  await connection.query(`SELECT * FROM ${relation.name}`);
+            const [rows] = await connection.query(`SELECT * FROM ${relation.name}`);
             res.json(rows);
         } catch (error) {
             console.error(error);
@@ -94,7 +87,8 @@ for (let relation of relations) {
         } catch (error) {
             console.error(error);
             res.status(500).send('Internal Server Error:');
-        }}
+        }
+    }
     )
 
     app.post(`/${relation.name}`, async (req, res) => {
@@ -140,7 +134,7 @@ for (let relation of relations) {
 
     app.delete(`/${relation.name}/:id`, async (req, res) => {
         // delete by id for relation
-        
+
         const id = req.params.id;
         try {
             const [rows] = await connection.query(
