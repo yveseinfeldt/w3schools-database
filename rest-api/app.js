@@ -2,6 +2,7 @@
 import mysql from 'mysql2/promise';
 import express from 'express';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -14,6 +15,7 @@ const connection = await mysql.createConnection({
     database: process.env.DB_NAME || 'w3schools',
 });
 
+app.use(cors({ origin: '*' }))
 
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
