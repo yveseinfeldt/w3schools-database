@@ -366,3 +366,17 @@ Whenever you make changes to the Next.js app, you will need to rebuild the Docke
 docker-compose down
 docker-compose up -d --build
 ```
+
+# Submission via github
+- Create a GitHub account if you don't have one already.
+- Create a new repository for your project.
+- Push your project code to the GitHub repository.
+
+```bash
+cd ~/w3schools-database
+git remote remove origin
+git remote add origin https://github.com/<your-username>/<your-repo-name>.git
+git branch -M main
+git push -u origin main
+```
+- Send the link to your GitHub repository via E-mail
